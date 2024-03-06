@@ -1,0 +1,75 @@
+
+.container {
+    display: grid;
+    flex-direction: row;
+    grid-template-columns: 1fr 1fr 5fr;
+    height: 100vh;
+    margin-top: 68px;
+  }
+  .bills {
+    /* padding-top: 20px; */
+    
+    background-color: rgba(217, 217, 217, 0.838);
+    
+  }
+  
+  .medicine {      
+    /* padding-top: 20px; */
+    display: flex;
+    flex-direction: row;
+    grid-template-rows: 2fr 1fr;
+    background-color: #eae9e7;
+  }
+  .search-btn {
+    max-height: 50px;
+  }
+  
+  .info {
+    padding-top: 20px;
+    background-color: rgb(255, 255, 255);
+    border-left: 1px solid black;
+  }
+  
+  .selected-medicine h1 {
+    padding-left: 20px;
+  }
+  .selected-medicine p {
+    font-size: larger;
+  }
+  .medicine-name {
+    padding: 10px;
+    background-color: rgba(196, 189, 175, 0.838);
+    border-radius: 5px;
+    max-width: 70%;
+    margin-bottom: 20px;
+    margin-top: 10px;
+  }
+  .name {
+    padding: 10px;
+    font-weight: bold;
+  }
+  .name-close {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .medicine-bill-info {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .bill-total {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 70%;
+  }
+  
+  .form-label {
+    margin-bottom: 10px !important;
+  }
+  
