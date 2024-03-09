@@ -14,6 +14,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import Button from '@mui/material/Button';
+import Navbar from "../Supperdoc/Navbar";
 
 export default function Docone() {
     const [isNewPrescriptionClicked, setIsNewPrescriptionClicked] = React.useState(false);
@@ -31,6 +32,7 @@ export default function Docone() {
     const [specialInstructions, setSpecialInstructions] = React.useState('');
     const [medicineList, setMedicineList] = React.useState([]); // State to hold medicine list
     const [prescriptionCode, setPrescriptionCode] = React.useState('');
+    const [formError, setFormError] = React.useState(false); // State to track form errors
     const prescriptionNumbers = ['PRENo:-202401315', 'PRENo:-202401316', 'PRENo:-202401317']; // Sample array of prescription numbers
 
     const handleNewPrescriptionClick = () => {
@@ -38,14 +40,27 @@ export default function Docone() {
     };
 
     const handleNextButtonClick = () => {
+        if (!fullName || !age || !date) {
+            setFormError(true); // Set form error if any field is empty
+            return; // Exit function early if form has errors
+        }
         setIsCardCreated(true);
+  
+    };
+
+    const handleContinueButtonClick=()=>{
+        setIsPrescriptionCodeOpen(true); // Open Prescription Code dialog after clicking Continue
+        generateRandomCode(); // Generate random code for Prescription Code dialog
+        
+
     };
 
     const handleCancelClick = () => {
-        setIsNewPrescriptionClicked(false); // Resetting form visibility
+        setIsNewPrescriptionClicked(false); // Reset form visibility
         setFullName('');
         setAge('');
         setDate('');
+        setFormError(false); // Reset form error state
     };
 
     const handleCardClick = () => {
@@ -57,6 +72,11 @@ export default function Docone() {
     };
 
     const handleSaveMedicineDetails = () => {
+        if (!brandName || !genericName || !dosage || !quantity || !useInstructions) {
+            setFormError(true); // Set form error if any required field is empty
+            return; // Exit function early if form has errors
+        }
+
         const newMedicine = {
             name: brandName,
             genericName,
@@ -67,7 +87,6 @@ export default function Docone() {
         };
         setMedicineList([...medicineList, newMedicine]); // Add new medicine to the medicine list
         setIsModalOpen(false); // Close the modal after saving details
-        setIsPrescriptionCodeOpen(true); // Open the prescription code pop-up
     };
 
     const generateRandomCode = () => {
@@ -84,8 +103,14 @@ export default function Docone() {
         setIsPrescriptionCodeOpen(false);
     };
 
+    const handleSendPrescriptionCode = () => {
+        alert("Code sent successfully"); // Display message indicating code was sent successfully
+        setIsPrescriptionCodeOpen(false); // Close Prescription Code dialog
+    };
+
     return (
         <div className="main">
+            <Navbar currentPage={"docin"} /> {/* Render the Navbar component */}
             <div className={`red ${isNewPrescriptionClicked ? 'blue' : ''}`}>
                 <List>
                     {['NEW PRESCRIPTION', ...prescriptionNumbers].map((text, index) => (
@@ -93,7 +118,8 @@ export default function Docone() {
                             <ListItemIcon>
                                 {index === 0 ? <AddCircleIcon /> : <InsertDriveFileIcon />}
                             </ListItemIcon>
-                            <ListItemText primary={text} />
+                            <ListItemText primary={index === 0 ? <span className={isNewPrescriptionClicked ? "new-prescription-clicked" : "new-prescription"}>{text}</span> : text} />
+                        
                         </ListItem>
                     ))}
                 </List>
@@ -105,6 +131,7 @@ export default function Docone() {
                 <div className="black">
                     <form>
                         <h2 className="head">Patient Information</h2>
+                        {formError && <p className="error-message">Please fill in all fields</p>} {/* Display error message if form has errors */}
                         <div className="form-field">
                             <TextField id="fullName" label="Full Name:" variant="standard" value={fullName} onChange={(e) => setFullName(e.target.value)} />
                         </div>
@@ -145,7 +172,7 @@ export default function Docone() {
                         </CardContent>
                     </Card>
                     <div className="Next-but">
-                        <button type="button" onClick={handleNextButtonClick}>Next</button>
+                        <button type="button" onClick={handleContinueButtonClick}>Next</button>
                     </div>
                     <div className="cancel-but">
                         <button type="button" onClick={handleCancelClick}>Cancel</button>
@@ -161,6 +188,7 @@ export default function Docone() {
                     <TextField fullWidth label="Quantity" variant="standard" value={quantity} onChange={(e) => setQuantity(e.target.value)} />
                     <TextField fullWidth label="Use Instructions" variant="standard" value={useInstructions} onChange={(e) => setUseInstructions(e.target.value)} />
                     <TextField fullWidth label="Special Instructions" variant="standard" value={specialInstructions} onChange={(e) => setSpecialInstructions(e.target.value)} />
+                    {formError && <p className="error-message">Please fill in all required fields</p>} {/* Display error message if any required field is empty */}
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleCloseModal}>Close</Button>
@@ -173,8 +201,8 @@ export default function Docone() {
                     <p>{prescriptionCode}</p>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClosePrescriptionCode}>Close</Button>
-                    <Button onClick={generateRandomCode}>Send</Button>
+                    <Button onClick={handleClosePrescriptionCode}>Cancel</Button>
+                    <Button onClick={handleSendPrescriptionCode}>Send</Button>
                 </DialogActions>
             </Dialog>
         </div>
