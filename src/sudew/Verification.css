@@ -1,44 +1,57 @@
-.VerificationLogo{
-    position: relative;
-    height: 60px;
-    bottom: 620px;
-}
-.HeadtopicVerification{
-    position: relative;
-    font-size: 32px;
-    left: 50%;
-    bottom:400px;
-}
-.Verificationform{
-    position: relative;
-    font-size: 24px;
-    left: 50%;
-    bottom:300px;
-
-
-}
-.EnterpasswordVerification{
-    position: relative;
-    font-size: 24px;
+.custom-container{
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
     
-
-}
-.SigninVerification{
-    position: relative;
-    font-size: 24px;
-    left: 75%;
-    bottom: 200px;
-    border-radius: 30px;
-    height: 40px;
-    width: 100px;
-}
-#passwordVerification{
-    position: relative;
-    font-size: 24px;
-    top: 20px;
-
-}
-.SigninVerification:hover{
-    background-color: rgb(76, 212, 212);
-    color: black;
-}
+  }
+  
+ 
+  
+  .VerificationS {
+    color: #2c3e50;
+    text-align: center;
+    margin-right: 200px;
+    margin-top: 100px;
+  }
+  
+  .Verificationform {
+    width: 400px;
+    margin: 40px auto;
+    padding: 50px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-right: 300px;
+  }
+  
+  label {
+    color: #2c3e50;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  button {
+    background-color: #6f71a2;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: block;
+    margin: 0 auto;
+    margin-right: 500px;
+  }
+  
+  button:hover {
+    background-color: #2980b9;
+  }
+  

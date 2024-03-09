@@ -5,8 +5,16 @@ import './Veridoc.css';
 const Veridoc = () => {
   return (
     <>
-      <img src={veriimg} alt="veri doc" />
+    
+      <div className="veridoc-container">
+      <img className='veridoc-logo' src="logomedlink.png" alt="main medlink logo" />
+      <div className='veridoc-content'> 
+      <img className='veridocwall' src={veriimg} alt="veri doc" />
+      <div className='verification-container'>
       <Verification />
+      </div>
+      </div>
+      </div>
     </>
   );
 };

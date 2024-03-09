@@ -17,17 +17,13 @@ const Verification = () => {
   };
 
   return (
-    <div>
-      <header>   <div> 
-        <img src="logomedlink.png" alt="main medlink logo" />
-          
-         </div> </header>
+    <div className="verification-container">
     
 
-      <h2>Verification Successfully</h2>
+      <h1 className='VerificationS'>Verification Successfully</h1>
       
       <form className='Verificationform'>
-        <label htmlFor="enter your new password">Enter your new password:</label>
+        <label htmlFor=" password">Enter your new password:</label>
         <br />
         <input
           type="password"

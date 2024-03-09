@@ -7,8 +7,15 @@ import './Veriph.css';
 const Veriph  = () =>{
   return (
     <>
-    <img src={veriphimg} alt="" />
-    <Verification/>
+   <div className="veriph-container">
+      <img className='veriph-logo' src="logomedlink.png" alt="main medlink logo" />
+      <div className='veriph-content'> 
+      <img className='veriphwall' src={veriphimg} alt="veriph" />
+      <div className='verification-newph'>
+      <Verification />
+      </div>
+      </div>
+      </div>
     </>
   )
 }
