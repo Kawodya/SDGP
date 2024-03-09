@@ -1,0 +1,16 @@
+.RPMedlinklogo{
+    position: fixed;
+    height: 60px;
+    bottom: 900px;
+}
+.Veripwallimg{
+    position: relative;
+    top: 400px;
+    height: 400px;
+}
+.RPVerificationSucsess{
+    position: relative;
+    font-size: 32px;
+    left: 800px;
+    top: 100px;
+}

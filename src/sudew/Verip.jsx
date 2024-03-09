@@ -1,6 +1,7 @@
 import React from 'react'
-import Verification from '../Verification'
-import veripimg from '../Verification tool/veripimg.png'
+import Verification from '../sudew/Verification';
+import veripimg from '../sudew/veripimg.png'
+import './Verip.css';
 
 const Verip = () => {
   return (

@@ -1,0 +1,44 @@
+.VerificationLogo{
+    position: relative;
+    height: 60px;
+    bottom: 620px;
+}
+.HeadtopicVerification{
+    position: relative;
+    font-size: 32px;
+    left: 50%;
+    bottom:400px;
+}
+.Verificationform{
+    position: relative;
+    font-size: 24px;
+    left: 50%;
+    bottom:300px;
+
+
+}
+.EnterpasswordVerification{
+    position: relative;
+    font-size: 24px;
+    
+
+}
+.SigninVerification{
+    position: relative;
+    font-size: 24px;
+    left: 75%;
+    bottom: 200px;
+    border-radius: 30px;
+    height: 40px;
+    width: 100px;
+}
+#passwordVerification{
+    position: relative;
+    font-size: 24px;
+    top: 20px;
+
+}
+.SigninVerification:hover{
+    background-color: rgb(76, 212, 212);
+    color: black;
+}

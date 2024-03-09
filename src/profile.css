@@ -1,0 +1,65 @@
+/* UserProfile.css */
+
+.user-profile {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #557b8f;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    color: #333;
+    text-align: center;
+  }
+  
+  .profile-picture {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  input[type="file"] {
+    display: none;
+  }
+  
+  .profile-image {
+    max-width: 70%;
+    height: auto;
+    border-radius: 50%; /* Make it circular */
+    margin-top: 5px;
+    object-fit: cover; /* Maintain aspect ratio */
+  }
+  
+  /* Style the file input to look like a button */
+  label[for="profilePicture"] {
+    cursor: pointer;
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 4px;
+    display: inline-block;
+  }
+  
+  label[for="profilePicture"]:hover {
+    background-color: #45a049;
+  }
+  
