@@ -20,7 +20,7 @@ const Verification = () => {
     <div className="verification-container">
     
 
-      <h1 className='VerificationS'>Verification Successfully</h1>
+      <h1 className='VerificationS'>Verification Successfully !!</h1>
       
       <form className='Verificationform'>
         <label htmlFor=" password">Enter your new password:</label>
