@@ -5,6 +5,8 @@ import Profile from "./Profile.jsx";
 import Veridoc from "./sudew/Veridoc.jsx";
 import Veriph from "./sudew/Veriph.jsx";
 import Verip from "./sudew/Verip.jsx";
+import Dapplication from "./dulnara/applicaton/Dapplication.jsx";
+import Papplication from "./dulnara/applicaton/Papplication.jsx";
 
 
 function App() {
@@ -16,6 +18,8 @@ function App() {
                         <Route path="/veridoc" element={<Veridoc/>}> </Route>
                         <Route path="/veriph" element={<Veriph/>}> </Route>
                         <Route path="/verip" element={<Verip/>}> </Route>
+                        <Route path="/dapp" element={<Dapplication/>}> </Route>
+                        <Route path="/papp" element={<Papplication/>}> </Route>
 
 
 

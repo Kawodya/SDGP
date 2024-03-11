@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import patient from "../applicaton/patient.png";
 import {useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom';
+import '../applicaton/Papplication.css'
 
 const Papplication = () => {
     const [Firstname, setFirstname] = useState('');
@@ -28,20 +29,20 @@ const Papplication = () => {
 
                 <div> 
                     <header>
-                    <img src="logomedlink.png" alt="main medlink logo" />
+                    <img className='LogoPapplication' src="logomedlink.png" alt="main medlink logo" />
                     <div> 
                         <p> </p>
-                        <Link to=' /patientotp'> signin </Link> </div>
+                        <Link to=' /patientotp' className='Papplicationsignup'> signin </Link> </div>
                         </header> 
                 </div>
 
 
-            <h2>Patient Application</h2>
+            <h2 className='HeadPatientpagePapplication'>Patient Application</h2>
             <img src={patient} alt="doctor" />
             <form action='patientotp' className='Dform'>
             <input
             type="text"
-            id="Firstname"
+            id="FirstnamePapplication"
             placeholder="First name"
             value={Firstname}
             onChange={(e) => setFirstname(e.target.value)}
@@ -49,7 +50,7 @@ const Papplication = () => {
             /><br/>
                <input
             type="text"
-            id="lastname"
+            id="lastnamePapplication"
             placeholder="last name"
             value={lastname}
             onChange={(e) => setLastname(e.target.value)}
@@ -58,7 +59,7 @@ const Papplication = () => {
             <br />
             <input
             type="text"
-            id="address"
+            id="addressPapplication"
             placeholder="Address"
             value={address}
             onChange={(e) => setAdress(e.target.value)}
@@ -67,7 +68,7 @@ const Papplication = () => {
             <br />
              <input
             type="text"
-            id="email"
+            id="emailPapplication"
             placeholder="email or Contact number"
             value={email}
             onChange={(e) => setemail(e.target.value)}
@@ -75,11 +76,11 @@ const Papplication = () => {
             />
             <br />
            
-            <button type="button" onClick={handleLogin}>
+            <button className='NextbtnPapplication' type="button" onClick={handleLogin}>
                     Next
                 </button>
                 <label htmlFor="back button"> <b></b> </label> <br />
-     <button onClick={() => navigate ("/n")} title="back to previous page">back </button>
+     <button className='BackPapplication' onClick={() => navigate ("/n")} title="back to previous page">Back </button>
 
     
             </form>

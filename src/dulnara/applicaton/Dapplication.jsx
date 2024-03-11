@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import doctor from "../applicaton/doctor.jpeg";
 import { useNavigate } from 'react-router-dom';
 import { Link} from 'react-router-dom';
+import '../applicaton/Dapplication.css';
 
 const Dapplication = () => {
     const [Firstname, setFirstname] = useState('');
@@ -26,20 +27,20 @@ const Dapplication = () => {
         <div className='Dapplication'>
                 
                 <div> 
-                    <img src="logomedlink.png" alt="main medlink logo" />
+                    <img className='Medlinklog' src="logomedlink.png" alt="main medlink logo" />
                     <div> 
-                        <p>New user? </p>
-                        <Link to=' #'> sign up </Link></div>
+                        <p className='NewUserDapplication'>New user? </p>
+                        <Link to=' #'className='SignUpDapplication'> sign up </Link></div>
                 </div>
 
-            <h2>Doctor Application</h2>
+            <h2 className='HeadDapplication'>Doctor Application</h2>
             <img src={doctor} alt="doctor" />
 
     
             <form action='/' className='Dform'>
                 <input
                     type="text"
-                    id="Firstname"
+                    id="FirstnameDapplication"
                     placeholder="First name"
                     required
                     value={Firstname}
@@ -47,7 +48,7 @@ const Dapplication = () => {
                 /><br />
                 <input
                     type="text"
-                    id="lastname"
+                    id="lastnameDapplication"
                     placeholder="last name"
                     required
                     value={lastname}
@@ -56,7 +57,7 @@ const Dapplication = () => {
                 <br />
                 <input
                     type="text"
-                    id="address"
+                    id="addressDapplication"
                     placeholder="Address"
                     required
                     value={address}
@@ -65,7 +66,7 @@ const Dapplication = () => {
                 <br />
                 <input
                     type="text"
-                    id="doctorID"
+                    id="doctorIDDapplication"
                     placeholder="doctorId/Registerd No"
                     required
                     value={doctorId}
@@ -74,18 +75,18 @@ const Dapplication = () => {
                 <br />
                 <input
                     type="text"
-                    id="email"
+                    id="emailDapplication"
                     placeholder="email or Contact number"
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                 />
                 <br />
-                <button type="button" onClick={handleLogin}>
+                <button className='NextbtnDapplication' type="button" onClick={handleLogin}>
                     Next
                 </button>
                 <label htmlFor="back button"> <b></b> </label> <br />
-     <button onClick={() => navigate ("/n")} title="back to previous page">back </button>
+     <button className='BackbtnDapplication' onClick={() => navigate ("/n")} title="back to previous page">Back </button>
             </form>
         </div>
     );
