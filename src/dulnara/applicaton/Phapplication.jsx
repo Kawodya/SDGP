@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import pharmacy from "../applicaton/pharmacy.jpeg";
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom';
-
+import '../applicaton/Phapplication.css'
 const Phapplication = () => {
     const [Firstname, setFirstname] = useState('');
     const [lastname, setLastname] = useState(''); 
@@ -24,21 +24,21 @@ const Phapplication = () => {
       };
     return (
         <div className='Dapplication'>
-            <h2>Pharmacy Application</h2>
+            <h2 className='HeadtopicPhapplication'>Pharmacy Application</h2>
             <div> 
                 <header>
-                    <img src="logomedlink.png" alt="main medlink logo" />
+                    <img className='LogoPhapplication' src="logomedlink.png" alt="main medlink logo" />
                     <div> 
-                        <p>New user? </p>
-                        <Link to=' /patientotp'> signin</Link> </div>
+                        <p className='NewuserPhapplication'>New user? </p>
+                        <Link to=' /patientotp' className='SignupPhapplication'> signin</Link> </div>
                         </header>
                 </div>
             {/* <img src={doctor} alt="Login Image" className="login-image" /> */}
-            <img src={pharmacy} alt="doctor" />
-            <form className='Dform'>
+            <img className='MainimgPhapplication' src={pharmacy} alt="doctor" />
+            <form className='FormPhapplication'>
             <input
             type="text"
-            id="Firstname"
+            id="FirstnamePhapplication"
             placeholder="First name"
             value={Firstname}
             onChange={(e) => setFirstname(e.target.value)}
@@ -46,7 +46,7 @@ const Phapplication = () => {
             /><br/>
                <input
             type="text"
-            id="lastname"
+            id="lastnamePhapplication"
             placeholder="last name"
             value={lastname}
             onChange={(e) => setLastname(e.target.value)}
@@ -55,7 +55,7 @@ const Phapplication = () => {
             <br />
             <input
             type="text"
-            id="address"
+            id="addressPhapplication"
             placeholder="Address"
             value={address}
             onChange={(e) => setAdress(e.target.value)}
@@ -64,7 +64,7 @@ const Phapplication = () => {
             <br />
              <input
             type="text"
-            id="phID"
+            id="phIDPhapplication"
             placeholder="PharmacyId"
             value={pharmacyID}
             onChange={(e) => setPharmacyID(e.target.value)}
@@ -73,18 +73,18 @@ const Phapplication = () => {
             <br />
              <input
             type="text"
-            id="email"
+            id="emailPhapplication"
             placeholder="email or Contact number"
             value={email}
             onChange={(e) => setemail(e.target.value)}
             required
             />
             <br />
-            <button type="button" onClick={handleLogin}>
+            <button className='NextbtnPhapplication' type="button" onClick={handleLogin}>
                     Next
                 </button>
                 <label htmlFor="back button"> <b></b> </label> <br />
-     <button onClick={() => navigate ("/n")} title="back to previous page">back </button>
+     <button className='BackbtnPhapplication' onClick={() => navigate ("/n")} title="back to previous page">Back </button>
             </form>
         </div>
     )

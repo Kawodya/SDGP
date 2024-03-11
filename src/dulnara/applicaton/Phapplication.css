@@ -1,93 +1,97 @@
-.HeadtopicPhapplication{
-    position: relative;
-    top: 200px;
-    left: 1100px;
-    font-size: 36px;
-}
-.LogoPhapplication{
-    position: relative;
+/* Define CSS variables for reusability */
+:root {
+    --primary-color: rgba(172, 179, 179, 0.977);
+  }
+  
+  /* General styles */
+  .Dapplication {
+    background-color: white;
+    padding: 20px;
+  }
+  
+  /* Header styles */
+  .LogoPhapplication {
     height: 60px;
-    bottom: 50px;
-}
-.SignupPhapplication{
-    position: relative;
-    left: 1800px;
-    bottom: 140px;
-    font-size: 12px;
-}
-.NewuserPhapplication{
-    position: relative;
-    left: 1700px;
-    bottom: 110px;
-    font-size: 12px;
-    
-}
-#FirstnamePhapplication{
-    position: relative;
-    bottom: 250px;
-    font-size: 24px;
-    left: 1100px;
-    
+   margin-top: -10px ; 
+  }
 
-}
-#lastnamePhapplication{
-    position: relative;
-    bottom: 282px;
-    font-size: 24px;
-    
-    left: 1500px;
-}
-
-#addressPhapplication{
-    position: relative;
-    bottom: 150px;
-    font-size: 24px;
-    width: 700px;
-    left: 1100px;
-}
-#phIDPhapplication{
-    position: relative;
-    bottom: 50px;
-    font-size: 24px;
-    width: 700px;
-    left: 1100px;
-
-}
-#emailPhapplication{
-    position: relative;
-    top: 40px;
-    font-size: 24px;
-    width: 700px;
-    left: 1100px;
-    
-}
-.NextbtnPhapplication{
-    position: relative;
-    top: 150px;
-    font-size: 24px;
-    border-radius: 30px;
-    width: 100px;
-    
-    left: 1710px;
-}
-.NextbtnPhapplication:hover{
-    background-color: rgb(123, 223, 218);
-    color: black;
-}
-.MainimgPhapplication{
+  .MainimgPhapplication{
     height: 500px;
+    margin-top: 20px;
+    
+  }
+  
+  .NewuserPhapplication {
+    font-size: 20px;
+    position: absolute;
+    top: 10px;
+    right: 155px;
+  }
+
+.SignupPhapplication{
+
+font-size: 20px;
+    position: absolute;
+    top: 30px;
+    right: 85px;
+
 }
-.BackbtnPhapplication{
-    position: relative;
-    top: 120px;
+  
+  .HeadtopicPhapplication {
+    font-size: 32px;
+    margin-top: 60px;
+    margin-right: -600px;
+    margin-bottom: -100px;
+    
+  }
+  
+  /* Form styles */
+  .FormPhapplication {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: -350px auto;
+    margin-right: 150px;
+  }
+  
+  input[type="text"] {
+    font-size: 18px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s ease;
+  }
+  
+  input[type="text"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+  }
+  
+  .NextbtnPhapplication {
     font-size: 24px;
+    padding: 10px 20px;
     border-radius: 30px;
-    width: 100px;
-    left: 1100px;
+    width: 150px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
 
-}
-.BackbtnPhapplication:hover{
+  .BackbtnPhapplication{
+    font-size: 24px;
+    padding: 10px 20px;
+    border-radius: 30px;
+    width: 150px;
+    margin-top: -75px;
+    margin-left: 200px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
 
-    background-color: rgb(123, 223, 218);
-    color: black;
-}
+  }
+  
+  .NextbtnDapplication:hover, .BackbtnDapplication:hover {
+    background-color: var(--primary-color);
+    color: white;
+  }
+  
