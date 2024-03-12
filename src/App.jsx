@@ -22,6 +22,7 @@ function App() {
                         <Route path="/dapp" element={<Dapplication/>}> </Route>
                         <Route path="/papp" element={<Papplication/>}> </Route>
                         <Route path="/phapp" element={<Phapplication/>}> </Route>
+                        {/* <Route path="/patient" element={}> </Route> */}
 
 
 
