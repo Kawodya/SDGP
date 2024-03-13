@@ -11,7 +11,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import AppsRoundedIcon from '@mui/icons-material/AppsRounded';
-import logo from './image/logomedlink.png';
+import logo from './image/logomed.png'
 
 const apps = ['App option 1', 'App option 2', 'App option 3']; // Add your app options here
 
