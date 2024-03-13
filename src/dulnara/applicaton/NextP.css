@@ -1,99 +1,68 @@
-/* .Medlinklogo */
-.Medlinklogo {
+.Medlinklogo{
     height: 50px;
 }
-
-/* .RoleHead */
-.RoleHead {
+.RoleHead{
     position: relative;
     left: 800px;
     font-size: 32px;
     bottom: 50px;
 }
-
-/* .Roledoca */
-.Roledoca {
+.Roledoca{
     position: relative;
     left: 800px;
     font-size: 24px;
+    
 }
-
-/* .Roledocaselect */
-.Roledocaselect {
+.Roledocaselect{
     position: relative;
-    left: 100px;
+    left: 850px;
     font-size: 24px;
-    padding: 10px 20px;
-    border: none;
-    background-color: #4CAF50;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
 }
-
-.Roledocaselect:hover {
-    background-color: #45a049;
-}
-
-/* .RolePatient */
-.RolePatient {
+.RolePatient{
     position: relative;
     left: 800px;
     font-size: 24px;
     top: 50px;
 }
-
-/* .RolePatientSelect */
-.RolePatientSelect {
+.RolePatientSelect{
     position: relative;
     left: 850px;
     font-size: 24px;
     top: 50px;
-    padding: 10px 20px;
-    border: none;
-    background-color: #008CBA;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
 }
-
-.RolePatientSelect:hover {
-    background-color: #0077a3;
-}
-
-/* .RolePharmacy */
-.RolePharmacy {
+.RolePharmacy{
     position: relative;
     left: 800px;
     top: 100px;
     font-size: 24px;
 }
-
-/* .RolePharmacySelect */
-.RolePharmacySelect {
+.RolePharmacySelect{
     position: relative;
     left: 820px;
     top: 100px;
     font-size: 24px;
-    padding: 10px 20px;
-    border: none;
-    background-color: #f44336;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
 }
-
-.RolePharmacySelect:hover {
-    background-color: #d32f2f;
-}
-
-/* .Roleimg */
-.Roleimg {
+.Roleimg{
     position: relative;
     top: 180px;
     height: 300px;
     width: 600px;
+
 }
+.Roledocaselect:hover{
+    background-color: black;
+    color: white;
+
+}
+.RolePatientSelect:hover{
+    background-color: black;
+    color: white;
+
+
+}
+.RolePharmacySelect:hover{
+    background-color: black;
+    color: white;
+
+}
+
