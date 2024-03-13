@@ -24,6 +24,7 @@ const  NextP  = () => {
      <button onClick={() => Navigate ("/phapplication")}>select </button>
       <br />    
     </div>
+    // added
   )
 }
 

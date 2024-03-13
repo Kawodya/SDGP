@@ -8,6 +8,7 @@ import Verip from "./sudew/Verip.jsx";
 import Dapplication from "./dulnara/applicaton/Dapplication.jsx";
 import Papplication from "./dulnara/applicaton/Papplication.jsx";
 import Phapplication from "./dulnara/applicaton/Phapplication.jsx";
+import Resetpass from "./dulnara/applicaton/Resetpass.jsx";
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
                         <Route path="/dapp" element={<Dapplication/>}> </Route>
                         <Route path="/papp" element={<Papplication/>}> </Route>
                         <Route path="/phapp" element={<Phapplication/>}> </Route>
+                        <Route path="/resetpass" element={<Resetpass/>}> </Route>
 
 
 
