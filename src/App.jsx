@@ -8,7 +8,7 @@ import Verip from "./sudew/Verip.jsx";
 import Dapplication from "./dulnara/applicaton/Dapplication.jsx";
 import Papplication from "./dulnara/applicaton/Papplication.jsx";
 import Phapplication from "./dulnara/applicaton/Phapplication.jsx";
-import SelLoc from "./Patient/SelLoc.jsx";
+// import SelLoc from "./Patient/SelLoc.jsx";
 
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
                         <Route path="/dapp" element={<Dapplication/>}> </Route>
                         <Route path="/papp" element={<Papplication/>}> </Route>
                         <Route path="/phapp" element={<Phapplication/>}> </Route>
-                        <Route path="/patient" element={<SelLoc/>}> </Route>
+                        {/* <Route path="/selloc" element={<SelLoc/>}> </Route> */}
 
 
 
