@@ -1,4 +1,5 @@
 import "./docone.css";
+
 import * as React from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -112,17 +113,18 @@ export default function Docone() {
         <div className="main">
             <Navbar currentPage={"docin"} /> {/* Render the Navbar component */}
             <div className={`red ${isNewPrescriptionClicked ? 'blue' : ''}`}>
-                <List>
+            <List>
                     {['NEW PRESCRIPTION', ...prescriptionNumbers].map((text, index) => (
                         <ListItem key={text} disablePadding onClick={index === 0 ? handleNewPrescriptionClick : undefined}>
                             <ListItemIcon>
                                 {index === 0 ? <AddCircleIcon /> : <InsertDriveFileIcon />}
                             </ListItemIcon>
-                            <ListItemText primary={index === 0 ? <span className={isNewPrescriptionClicked ? "new-prescription-clicked" : "new-prescription"}>{text}</span> : text} />
-                        
+                            <ListItemText primary={index === 0 ? <span className={`new-prescription-box ${isNewPrescriptionClicked ? "new-prescription-clicked" : ""}`}>{text}</span> : text} />
                         </ListItem>
                     ))}
                 </List>
+            
+             
             </div>
             <div className="blue">
                 <TextField id="standard-basic" label="search" placeholder="Enter prescription Number" variant="standard" />
