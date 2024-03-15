@@ -71,7 +71,22 @@ export default function BillSystem() {
     const formateAddedMedicines = () => {
         return (
             <div>
-               
+                <Typography variant="h4" color="initial">Medicine Information</Typography>
+                {addedMedicines.map((medicine, index) => (
+                    <div className='medicine-name'>
+                        <div className='name-close'>
+                            <p className='name'>{`${medicine.name}`}</p>
+                            <CloseIcon onClick={() => handleRemove(index)} />
+                        </div>
+                        <div className='medicine-bill-info' key={index}>
+                        
+                            <p>{medicine.mg}</p>
+                            <p>Qrt : {medicine.noOfPills}</p>
+                            <p>Rs. {medicine.price*medicine.noOfPills}</p>
+                        
+                        </div>
+                    </div>
+                ))}
             </div>
             
         );
