@@ -100,6 +100,15 @@ export default function BillSystem() {
 
 
 
+    const displayBillList = () => {
+        if (billList.length > 0) {
+            return billList.map((bill, index) => (
+                <div key={index}>
+                    <Button variant="contained" color="primary"><InsertDriveFileIcon />{bill}</Button>
+                </div>
+            ));
+        }
+    }
 
    
 
