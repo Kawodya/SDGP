@@ -191,9 +191,25 @@ export default function BillSystem() {
                     onChange={(event, value) => setSelectedMedicine(value)}
                     renderInput={(params) => <TextField {...params} label="Search Medicines" />}
                 />
-            </div> 
+            </div>           
+              <Navbar/>
             <div className="info">
-                
+            <div className="medicine-info">
+                    {formateMedicine(selectedMedicine)}
+                    {selectedMedicine && <TextField id="outlined-basic" sx={{
+                        width: '40%',
+                        marginTop: '15px',
+                        marginBottom: '25px'
+                    }} type="number"
+                    label="No of Pills" variant="outlined" onChange={(e) => setNoOfPills(e.target.value)} />}
+                    {selectedMedicine && <Button sx={{
+                        marginTop: '25px',
+                        ml: 10,
+                        border: '2px solid',
+                        borderRadius: '50px ',
+                        color: 'grey'
+                    }} onClick={handleAdd}>Add</Button>}
+                </div>
                 <div className="added-medicines">
                     {isAddClicked && formateAddedMedicines()}
                 </div>
