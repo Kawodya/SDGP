@@ -137,7 +137,16 @@ export default function BillSystem() {
         setBillTotal(addedMedicines.reduce((acc, medicine) => acc + (medicine.price * medicine.noOfPills), 0));
     }, [addedMedicines]);
 
-    
+        const styles = {
+        position: 'absolute',
+        top: 28,
+        right: 0,
+        left: 0,
+        zIndex: 1,
+        border: '1px solid',
+        p: 1,
+        bgcolor: 'background.paper',
+    };
 
     return (
         <div >
