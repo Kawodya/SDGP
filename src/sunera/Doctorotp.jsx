@@ -3,7 +3,7 @@ import OTPAuthentication from './OTPAuthentication';
 import newdoc from './image/newsdoc.jpg';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import './../CSS/Doctorotp.css'
+import '../sunera/Doctorotp.css'
 
 const Doctorotp = () => {
   const navigate = useNavigate();
