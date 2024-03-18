@@ -2,7 +2,7 @@
   margin-top: 70px;
   padding: auto;
     display: grid;
-    grid-template-columns: 1fr 1fr 6fr;
+    grid-template-columns: 2fr 2fr 6fr;
     height: 100vh;
     color: black;
     
@@ -44,14 +44,8 @@
   .redo{
     background-color: rgb(202, 208, 206);
   }
-  .form-field {
-    margin-bottom: 1rem; /* Adjust spacing between form fields */
-    border: 120px;
-    background-color: transparent;
-    width: 300px;
-    height: 50px;
-    position: relative;
-}
+  
+ 
 .cancel-but{
   border-radius: 30px;
   position: relative;
@@ -64,6 +58,7 @@
   position: relative;
   top: 70px;
   left: 240px;
+  
 }
 .medicine-card{
   background-color: rgb(5, 26, 20);
@@ -93,12 +88,18 @@
   .error-message{
     color: red;
   }
-  .new-prescription {
-    cursor: pointer;
+  .new-prescription-box {
+    display: inline-block;
+    padding: 5px 10px;
+    
+    border-radius: 5px;
   }
+
+
   
   .new-prescription-clicked {
-    cursor: pointer;
-    background-color: rgb(13, 141, 226); /* Change background color as desired */
+    background-color: blue;
+    color: white;
+  
   }
   

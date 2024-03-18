@@ -1,0 +1,66 @@
+/* General styles */
+.ResetPass {
+    background-color: #f9f9f9;
+    height: 100vh;
+    text-align: center;
+  }
+  
+  /* Header styles */
+  .LOgoRestPass {
+    height: 60px;
+  }
+  
+  .NewUserResetPass, .SignInRestPass {
+    font-size: 14px;
+    position: absolute;
+    top: 20px;
+  }
+  
+  .SignInRestPass {
+    right: 20px;
+  }
+  
+  /* Form styles */
+  .HeadRestPass {
+    font-size: 32px;
+    margin-top: 20px;
+  }
+  
+  .paraRestPass {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  
+  form {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  #emailRestPass {
+    font-size: 18px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    width: calc(100% - 20px); /* Adjusting for padding */
+    max-width: 300px;
+    box-sizing: border-box;
+  }
+  
+  .RestPasswe {
+    font-size: 18px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    width: calc(100% - 20px); /* Adjusting for padding */
+    max-width: 200px;
+    cursor: pointer;
+    background-color: #2222c2;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .RestPasswe:hover {
+    background-color: #6868e8;
+  }
+  

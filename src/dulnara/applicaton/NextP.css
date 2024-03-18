@@ -1,0 +1,68 @@
+.Medlinklogo{
+    height: 50px;
+}
+.RoleHead{
+    position: relative;
+    left: 800px;
+    font-size: 32px;
+    bottom: 50px;
+}
+.Roledoca{
+    position: relative;
+    left: 800px;
+    font-size: 24px;
+    
+}
+.Roledocaselect{
+    position: relative;
+    left: 850px;
+    font-size: 24px;
+}
+.RolePatient{
+    position: relative;
+    left: 800px;
+    font-size: 24px;
+    top: 50px;
+}
+.RolePatientSelect{
+    position: relative;
+    left: 850px;
+    font-size: 24px;
+    top: 50px;
+}
+.RolePharmacy{
+    position: relative;
+    left: 800px;
+    top: 100px;
+    font-size: 24px;
+}
+.RolePharmacySelect{
+    position: relative;
+    left: 820px;
+    top: 100px;
+    font-size: 24px;
+}
+.Roleimg{
+    position: relative;
+    top: 180px;
+    height: 300px;
+    width: 600px;
+
+}
+.Roledocaselect:hover{
+    background-color: black;
+    color: white;
+
+}
+.RolePatientSelect:hover{
+    background-color: black;
+    color: white;
+
+
+}
+.RolePharmacySelect:hover{
+    background-color: black;
+    color: white;
+
+}
+

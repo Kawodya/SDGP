@@ -11,7 +11,8 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import AppsRoundedIcon from '@mui/icons-material/AppsRounded';
-import logo from './image/logomed.png'
+import Wlogo from '../Wlogo.jpg';
+import '../Supperdoc/navbar.css';
 
 const apps = ['App option 1', 'App option 2', 'App option 3']; // Add your app options here
 
@@ -53,6 +54,9 @@ function Navbar({ currentPage }) {
   } else {
     pageText = 'Patient';
     pageColor = 'blue'; // Change to desired color
+  } if (currentPage==='docin') {
+    pageText ='Doctor';
+    pageColor = 'blue';
   }
 
   return (
@@ -77,7 +81,7 @@ function Navbar({ currentPage }) {
               textDecoration: 'none',
             }}
           >
-            <img src={logo} style={{ width: '200px' }} alt="logo" srcset="" />
+            <img src={Wlogo} style={{ width: '200px' }} alt="logo" srcset="" />
             <Typography
               variant="h6"
               noWrap
