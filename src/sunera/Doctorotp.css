@@ -1,0 +1,34 @@
+.DotpMedlinklogo{
+    position: fixed;
+    height: 60px;
+    bottom: 830px;
+}
+.Pharmacyotpwall{
+    position: relative;
+    top: 300px;
+    height: 500px;
+}
+.Newuserdocotp{
+    position: fixed;
+    left: 1200px;
+    bottom: 807px;
+
+}
+.signinDoctorotp{
+    position: fixed;
+    left: 1400px;
+    bottom: 830px;
+
+}
+.HeadDoctorotp{
+    position: relative;
+    font-size: 32px;
+    left: 700px;
+    bottom: 80px;
+}
+.Paradocotp{
+    position: relative;
+    font-size: 24px;
+    left: 698px;
+    bottom: 50px;
+}

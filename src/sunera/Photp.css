@@ -1,0 +1,35 @@
+.HeadpartPhotp{
+    position: relative;
+    top: 200px;
+    left: 700px;
+    font-size: 32px;
+    
+}
+.NewUserPhotp{
+    position: relative;
+    left: 1200px;
+}
+.ppartPhotp{
+    position: relative;
+    top: 300px;
+    left: 700px;
+    font-size: 24px;
+     
+}
+
+.wallimgPhotp{
+    position: relative;
+    
+}
+.LogoPhotp{
+    position: relative;
+    height: 60px;
+    top: 53px;
+    
+}
+.SignUpPhotp{
+    position: relative;
+    left: 1350px;
+    bottom: 40px;
+
+}

@@ -1,0 +1,66 @@
+.login-container{
+    background-color: white;
+}
+.LoginTopic{
+    position: relative;
+    top: 200px;
+    left: 980px;
+    font-size: 45px;
+}
+   
+    
+
+.LoginPara{
+    position: relative;
+    top: 170px;
+    left: 990px;
+}
+
+#Loginusername{
+    position: relative;
+    left: 990px;
+    bottom: 300px;
+    font-size: 24px;
+    
+}
+#Loginpassword{
+    position: relative;
+    left: 990px;
+    bottom: 200px;
+    font-size: 24px;
+}
+.LoginShowpassword{
+    position: relative;
+    left: 1320px;
+    bottom: 230px;
+    cursor: pointer;
+    
+    font-size: 24px;
+
+}
+.LoginShowpassword:hover{
+    background-color: rgb(135, 13, 249);
+    color: white;
+
+}
+
+.Loginbtn{
+    position: relative;
+    left: 990px;
+    bottom: 180px;
+    font-size: 24px;
+    border-radius: 20px;
+    width: 120px;
+    height: 45px;
+    cursor: pointer;
+
+}
+.Loginbtn:hover{
+    background-color: rgb(137, 25, 242);
+    color: white;
+}
+.LoginForgetpassword{
+    position: relative;
+    left: 1200px;
+    bottom: 210px;
+}

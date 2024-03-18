@@ -1,0 +1,35 @@
+.HeadPatientotp{
+    position: relative;
+    top: 400px;
+    font-size: 24px;
+    left: 700px;
+}
+.NewUserPatientotp{
+    position: fixed;
+    left: 1200px;
+    top: 70px;
+    
+}
+.paraPatientotp{
+    position: relative;
+    font-size: 24px;
+    top: 500px;
+    left: 700px;
+    
+}
+.PatientimgPatientotp{
+    position: relative;
+    
+
+}
+.LogoPatientotp{
+    position: fixed;
+    height: 60px;
+    top: 53px;
+    
+}
+.signinPatientotp{
+    position: fixed;
+    top: 80px;
+    left: 1300px;
+}
