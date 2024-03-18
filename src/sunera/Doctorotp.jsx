@@ -2,6 +2,8 @@ import React from 'react';
 import OTPAuthentication from './OTPAuthentication';
 import newdoc from './image/newsdoc.jpg';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import './../CSS/Doctorotp.css'
 
 const Doctorotp = () => {
   const navigate = useNavigate();
@@ -14,17 +16,23 @@ const Doctorotp = () => {
 
   return (
     <>
-      <img src={newdoc} alt="newdoc" />
+    <div>
+
+      <img className='Pharmacyotpwall' src={newdoc} alt="newdoc" />
+      <p className='Newuserdocotp'>New user? </p>
       <div>
-        <h2>
+      <img className='DotpMedlinklogo' src="logomedlink.png" alt="main medlink logo" />
+      <div>    <Link to=' #' className='signinDoctorotp'> sign up </Link></div>
+        <h2 className='HeadDoctorotp'>
           Verify your email address to create <br /> your new account
         </h2>
-        <p>
+        <p className='Paradocotp'>
           An email with a verification code has been sent to <br />{' '}
           <b>abcd@gmail.com</b> <br /> Enter the code here.
         </p>
       </div>
       <OTPAuthentication handleNext={handleNext} />
+      </div>
     </>
   );
 };
