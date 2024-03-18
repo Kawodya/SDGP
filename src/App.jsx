@@ -9,7 +9,7 @@ import Dapplication from "./dulnara/applicaton/Dapplication.jsx";
 import Papplication from "./dulnara/applicaton/Papplication.jsx";
 import Phapplication from "./dulnara/applicaton/Phapplication.jsx";
 import NextPage from "./dulnara/applicaton/NextPage.jsx";
-// import SelLoc from "./Patient/SelLoc.jsx";
+import SelLoc from "./Patient/SelLoc.jsx";
 
 
 function App() {
@@ -26,7 +26,10 @@ function App() {
                         <Route path="/phapp" element={<Phapplication/>}> </Route>
                         <Route path="/next" element={<NextPage/>}> </Route>
 
-                        {/* <Route path="/selloc" element={<SelLoc/>}> </Route> */}
+                        {/* <Route path="/selLoc" element={<SelLoc/>}> </Route> */}
+
+
+                        <Route path="/selloc" element={<SelLoc/>}> </Route>
 
 
 
