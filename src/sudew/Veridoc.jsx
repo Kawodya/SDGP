@@ -1,7 +1,12 @@
 import React from 'react';
 import Verification from '../sudew/Verification';
+<<<<<<< Updated upstream
 import veriimg from '../sudew/veriimg.jpeg';// import the verification image
 import './Veridoc.css';
+=======
+import veriimg from '../sudew/veriimg.jpeg';
+
+>>>>>>> Stashed changes
 const Veridoc = () => {
   return (
     <>
