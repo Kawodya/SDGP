@@ -1,7 +1,7 @@
 import React from 'react'
 import OTPAuthentication from './OTPAuthentication'
 import { useNavigate } from 'react-router-dom';
-import './../CSS/Patientotp.css'
+import '../sunera/Patientotp.css'
 import { Link } from 'react-router-dom';
 const Patientotp = () => {
   const navigate = useNavigate();
