@@ -2,7 +2,7 @@ import OTPAuthentication from "../components/OTPAuthentication"
 import { Link } from 'react-router-dom';
 import Otpimg from "../images/otp.jpeg"
 import { useNavigate } from 'react-router-dom';
-import './../CSS/Photp.css'
+import '../sunera/Photp.css'
 
 const Photp = () => {
     const navigate = useNavigate();
