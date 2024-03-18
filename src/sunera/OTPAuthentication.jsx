@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import './../CSS/OTPAuthentication.css'
 
 
 const OTPAuthentication = ({ handleNext }) => {
@@ -56,8 +56,10 @@ const OTPAuthentication = ({ handleNext }) => {
   return (
     <div>
         <div> 
-        <img src="logomedlink.png" alt="main medlink logo" />
-          
+      
+          <div> 
+      
+   </div>
          </div>
 
       
@@ -67,6 +69,7 @@ const OTPAuthentication = ({ handleNext }) => {
             key={index}
             id={`otp-input-${index}`}
             type="text"
+            className='TheboxesOTPAuthentication'
             value={digit}
             onChange={(e) => handleInputChange(index, e.target.value)}
             onKeyPress={(e) => handleKeyPress(e, index)}
@@ -76,11 +79,11 @@ const OTPAuthentication = ({ handleNext }) => {
           />
         ))}
       </div>
-       <div className='vlink'><Link to ='/v'>  Didn't get a code  </Link> </div> 
+       <div className='vlinkOTPAuthentication'><Link to ='/v'>  Didn't get a code  </Link> </div> 
        
       <br />
      
-      <button onClick={handleNextButton}>Next</button>
+      <button className='NextbtnOTPAuthentication' onClick={handleNextButton}>Next</button>
       {/* get code */}
     </div>
   );
