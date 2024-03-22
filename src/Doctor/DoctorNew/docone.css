@@ -1,105 +1,89 @@
-.main{
+* {
+  margin: 0;
+}
+
+.main {
   margin-top: 70px;
   padding: auto;
-    display: grid;
-    grid-template-columns: 2fr 2fr 6fr;
-    height: 100vh;
-    color: black;
-    
-    
-
-
+  display: grid;
+  grid-template-columns: 2fr 2fr 6fr;
+  height: calc(100vh - 70px);
+  color: black;
 }
 
-.red{
-    border-right: 2px solid black;
-    padding-right: 10px;
-    background-color: rgb(231, 231, 231);
-    
-    
+.red {
+  padding-right: 10px;
+  padding-left: 5px;
+  background-color: rgb(231, 231, 231);
 }
 
-.blue{
-    border-right: 2px solid black;
-    padding-right: 1px;
-    padding-left: 5px;
-    
-    
-
+.blue {
+  padding-right: 10px;
+  padding-left: 5px;
 }
-  .black {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-   
-    
-  }
-  
-  .center-content {
-    text-align: center;
-    margin-top: 500px; /* Adjust the margin as needed */
+.black {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  }
-  
-  .redo{
-    background-color: rgb(202, 208, 206);
-  }
-  
- 
-.cancel-but{
+.center-content {
+  text-align: center;
+  margin-top: 500px; /* Adjust the margin as needed */
+}
+
+.redo {
+  background-color: rgb(202, 208, 206);
+}
+
+.cancel-but {
   border-radius: 30px;
   position: relative;
   top: 50px;
-  left: 330px;
-  background-color: rgb(188, 194, 192);
+  /* left: 330px; */
 }
-.Next-but{
+.Next-but {
   border-radius: 30px;
   position: relative;
   top: 70px;
   left: 240px;
-  
 }
-.medicine-card{
+.medicine-card {
   background-color: rgb(5, 26, 20);
 }
-.card-content{
+.card-content {
   background-color: rgb(204, 210, 210);
-
 }
-.card-cancel{
+.card-cancel {
   border-radius: 30px;
   position: relative;
   top: 50px;
   left: 330px;
-
-
 }
-.card-next{
+.card-next {
   border-radius: 30px;
   position: relative;
   top: 70px;
   left: 240px;
-
 }
-.card-content{
+.card-content {
   cursor: pointer;
 }
-  .error-message{
-    color: red;
-  }
-  .new-prescription-box {
-    display: inline-block;
-    padding: 5px 10px;
-    
-    border-radius: 5px;
-  }
+.error-message {
+  color: red;
+}
+.new-prescription-box {
+  display: inline-block;
+  padding: 5px 10px;
 
+  border-radius: 5px;
+}
 
-  
-  .new-prescription-clicked {
-    background-color: blue;
-    color: white;
-  
-  }
-  
+.new-prescription-clicked {
+  background-color: #39a1db;
+  color: white;
+}
+
+.prescription-buttons:hover {
+  background-color: rgb(167, 162, 162) !important;
+}
