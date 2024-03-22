@@ -1,97 +1,96 @@
 /* Define CSS variables for reusability */
 :root {
-    --primary-color: rgba(172, 179, 179, 0.977);
-  }
-  
-  /* General styles */
-  .Dapplication {
-    background-color: white;
-    padding: 20px;
-  }
-  
-  /* Header styles */
-  .LogoPhapplication {
-    height: 60px;
-   margin-top: -10px ; 
-  }
+  --primary-color: rgba(172, 179, 179, 0.977);
+}
 
-  .MainimgPhapplication{
-    height: 500px;
-    margin-top: 20px;
-    
-  }
+/* General styles */
+.Dapplication {
+  background-color: white;
+  padding: 20px;
+}
+
+/* Header styles */
+.LogoPhapplication {
+  height: 60px;
+ margin-top: -10px ; 
+}
+
+.MainimgPhapplication{
+  height: 500px;
+  margin-top: 20px;
   
-  .NewuserPhapplication {
-    font-size: 20px;
-    position: absolute;
-    top: 10px;
-    right: 155px;
-  }
+}
+
+.NewuserPhapplication {
+  font-size: 20px;
+  position: absolute;
+  top: 10px;
+  right: 155px;
+}
 
 .SignupPhapplication{
 
 font-size: 20px;
-    position: absolute;
-    top: 30px;
-    right: 85px;
+  position: absolute;
+  top: 30px;
+  right: 85px;
 
 }
-  
-  .HeadtopicPhapplication {
-    font-size: 32px;
-    margin-top: 60px;
-    margin-right: -600px;
-    margin-bottom: -100px;
-    
-  }
-  
-  /* Form styles */
-  .FormPhapplication {
-    display: flex;
-    flex-direction: column;
-    max-width: 600px;
-    margin: -350px auto;
-    margin-right: 150px;
-  }
-  
-  input[type="text"] {
-    font-size: 18px;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    transition: border-color 0.3s ease;
-  }
-  
-  input[type="text"]:focus {
-    outline: none;
-    border-color: var(--primary-color);
-  }
-  
-  .NextbtnPhapplication {
-    font-size: 24px;
-    padding: 10px 20px;
-    border-radius: 30px;
-    width: 150px;
-    margin-top: 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
 
-  .BackbtnPhapplication{
-    font-size: 24px;
-    padding: 10px 20px;
-    border-radius: 30px;
-    width: 150px;
-    margin-top: -75px;
-    margin-left: 200px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
+.HeadtopicPhapplication {
+  font-size: 32px;
+  margin-top: 60px;
+  margin-right: -600px;
+  margin-bottom: -100px;
+  
+}
 
-  }
-  
-  .NextbtnDapplication:hover, .BackbtnDapplication:hover {
-    background-color: var(--primary-color);
-    color: white;
-  }
-  
+/* Form styles */
+.FormPhapplication {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  margin: -350px auto;
+  margin-right: 150px;
+}
+
+input[type="text"] {
+  /* font-size: 18px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  transition: border-color 0.3s ease; */
+}
+
+input[type="text"]:focus {
+  /* outline: none;
+  border-color: var(--primary-color); */
+}
+
+.NextbtnPhapplication {
+  font-size: 24px;
+  padding: 10px 20px;
+  border-radius: 30px;
+  width: 150px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.BackbtnPhapplication{
+  font-size: 24px;
+  padding: 10px 20px;
+  border-radius: 30px;
+  width: 150px;
+  margin-top: -75px;
+  margin-left: 200px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+}
+
+.NextbtnDapplication:hover, .BackbtnDapplication:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
