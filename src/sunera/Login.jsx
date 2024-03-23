@@ -1,20 +1,51 @@
-import React, { useState } from 'react';
-import logo from "../images/logo.jpeg";
-import { Link, useNavigate } from 'react-router-dom';
-import '../CSS/Login.css'
+import React, { useEffect, useState } from "react";
+import logo from "./logo.jpeg";
+import { Link, useNavigate } from "react-router-dom";
+import "./Login.css";
+import { IconButton, InputAdornment, TextField } from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import axiosClient from "../axios-client";
 const Login = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    if (user) {
+      if (user.role === "pharmacist") {
+        navigate("/dashboard");
+      } else if (user.role === "doctor") {
+        navigate("/");
+      } else {
+        navigate("/search");
+      }
+    }
+  }, []);
+
   const handleLogin = () => {
-    if (username.trim() === '' || password.trim() === '') {
+    if (username.trim() === "" || password.trim() === "") {
       // Show an alert if either username or password is empty
-      alert('Please enter both username and password.');
+      alert("Please enter both username and password.");
     } else {
+      const payload = {
+        email: username,
+        password: password,
+      };
+      axiosClient
+        .post("/users/login", payload)
+        .then(({ data }) => {
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("user", JSON.stringify(data.user));
+          window.location.reload();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
       // Navigate to another page
-      navigate('/n');
+      // navigate("/n");
     }
   };
 
@@ -23,42 +54,83 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container">
-
-      <h2 className='LoginTopic'>Welcome Medlink</h2>
-      <p className='LoginPara'>Login to continue</p>
-      <img src={logo} alt="Login Image" className="login-image" />
-      <form className="login-form">
-       
-        <input
-          type="text"
-          id="Loginusername"
-          placeholder="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <br></br>
-        
-        <div className="password-container">
-          <input
-            type={showPassword ? "text" : "password"}
-            id="Loginpassword"
-            placeholder="password"
+    <div
+      className=""
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "100vh",
+        gap: "20px",
+      }}
+    >
+      <img
+        style={{ flex: "1" }}
+        src={logo}
+        alt="Login Image"
+        className="login-image"
+      />
+      <div style={{ position: "absolute", top: "20px", right: "50px" }}>
+        <span>New user? </span>
+        <Link to="/n" className="">
+          sign up
+        </Link>
+      </div>
+      <div style={{ display: "flex", flexDirection: "column", flex: "1.1" }}>
+        <h1 style={{ fontSize: "60px" }} className="">
+          Welcome Medlink
+        </h1>
+        <h2 className="" style={{ marginBottom: "30px" }}>
+          Login to continue
+        </h2>
+        <form style={{ margin: "0" }} className="">
+          <TextField
+            label="Username"
+            variant="outlined"
+            fullWidth={true}
+            value={username}
+            style={{ marginBottom: "30px" }}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <TextField
+            label="Password"
+            variant="outlined"
+            fullWidth={true}
+            style={{ marginBottom: "30px" }}
+            type={showPassword ? `text` : `password`}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={toggleShowPassword}
+                    edge="end"
+                  >
+                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
           />
-          <br />
-          <button className='LoginShowpassword' type="button" onClick={toggleShowPassword}>
-            {showPassword ? "Hide password" : "Show password"}
+          <button
+            style={{
+              display: "inline-block",
+              margin: "0",
+              marginRight: "30px",
+            }}
+            className=""
+            type="button"
+            onClick={handleLogin}
+          >
+            Login
           </button>
-        </div>
-        <br/>
-
-        <button className='Loginbtn' type="button" onClick={handleLogin}>Login</button>
-      </form>
-
-      <div className='LoginForgetpassword'> <Link to="/r"> Forget Password </Link></div>
-      
+          <Link style={{ display: "inline-block" }} to="/r">
+            Forget Password
+          </Link>
+        </form>
+      </div>
     </div>
   );
 };
