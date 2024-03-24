@@ -3,7 +3,9 @@ import patient from "../applicaton/patient.png";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "../applicaton/Papplication.css";
-import { TextField } from "@mui/material";
+import { IconButton, InputAdornment, TextField } from "@mui/material";
+import axiosClient from "../../axios-client";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 const Papplication = () => {
   const [Firstname, setFirstname] = useState("");
@@ -37,6 +39,12 @@ const Papplication = () => {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -105,8 +113,22 @@ const Papplication = () => {
             variant="outlined"
             fullWidth={true}
             style={{ marginBottom: "30px" }}
+            type={showPassword ? `text` : `password`}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={toggleShowPassword}
+                    edge="end"
+                  >
+                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
           />
           <div style={{ display: "flex", gap: "30px" }}>
             <button style={{ margin: "0" }} type="button" onClick={handleLogin}>
