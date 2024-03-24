@@ -1,25 +1,3 @@
-// import { useState } from 'react'
-// import Button from '@mui/material/Button';
-// import Navbar from './Navbar';
-// import UserCard from './userCard'
-// import DashButton from './dashButtons'
-// import TimelineIcon from '@mui/icons-material/Timeline';
-// import AddCircleIcon from '@mui/icons-material/AddCircle';
-
-// function DashBoard() {
-//   return (
-//     <div style={{ backgroundColor: 'blue' }}>
-//       <Navbar currentPage={"Dashboard"}/>
-//       <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr 1fr',marginTop:'200px',marginLeft:'150px'}}>
-//         <UserCard style={{marginRight:'10px'}}></UserCard>
-//       <DashButton/>
-//       </div>
-//     </div>
-//   )
-// }
-
-// export default DashBoard;
-
 import React from "react";
 import { useEffect } from "react";
 import Button from "@mui/material/Button";
@@ -42,7 +20,7 @@ function DashBoard() {
 
   return (
     <div style={{ height: "100vh" }}>
-      <Navbar currentPage={"Dashboard"} />
+      <Navbar currentPage={"dashboard"} />
       <div
         style={{
           display: "flex",
@@ -52,8 +30,10 @@ function DashBoard() {
           gap: "20px",
         }}
       >
-        <UserCard style={{ marginRight: "10px" }}></UserCard>
-        <DashButton />
+        <div>
+          <UserCard style={{ marginRight: "10px" }}></UserCard>
+          <DashButton />
+        </div>
       </div>
     </div>
   );
