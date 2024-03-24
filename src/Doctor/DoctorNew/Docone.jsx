@@ -55,14 +55,15 @@ export default function Docone() {
   };
 
   const handleContinueButtonClick = () => {
-    generateRandomCode();
     const payload = {
       user_name: fullName,
       age: age,
       date: date,
-      medicinesArray: medicineList,
-      code: prescriptionCode,
+      medicines: medicineList,
+      code: generateRandomCode(),
+      user_id: selectedPatient.id._id,
     };
+    console.log(payload);
     axiosClient
       .post("/prescription", payload)
       .then(() => {
@@ -78,6 +79,10 @@ export default function Docone() {
     setFullName("");
     setAge("");
     setDate("");
+    setMedicineList([]);
+    setSelectedPatient(null);
+    setPrescriptionCode("");
+    setIsCardCreated(false);
     setFormError(false); // Reset form error state
   };
 
@@ -122,14 +127,14 @@ export default function Docone() {
     setIsModalOpen(false); // Close the modal after saving details
   };
   const generateRandomCode = () => {
-    const characters =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     let result = "";
     const charactersLength = characters.length;
     for (let i = 0; i < 6; i++) {
       result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
     setPrescriptionCode(result);
+    return result;
   };
 
   const handleClosePrescriptionCode = () => {
@@ -142,6 +147,7 @@ export default function Docone() {
   };
 
   const [medicineOptions, setMedicineOptions] = useState([]);
+  const [patientOptions, setPatientOptions] = useState([]);
 
   useEffect(() => {
     axiosClient.get("/products").then(({ data }) => {
@@ -156,14 +162,32 @@ export default function Docone() {
       setMedicineOptions(array);
     });
 
-    setPrescriptionNumbers([{ code: 12345 }, { code: "abcdef" }]);
-    axiosClient.get("/prescription").then(({ data }) => {
-      console.log(data.data);
-      // setPrescriptionNumbers(data.data);
+    axiosClient.get("/users").then(({ data }) => {
+      const array = [];
+      data.data.map((user) => {
+        if (user.roles[0].role === "patient") {
+          const obj = {
+            label: `${user.first_name} ${user.last_name}`,
+            id: user,
+          };
+          array.push(obj);
+        }
+      });
+      setPatientOptions(array);
     });
-  }, []);
+
+    axiosClient
+      .get("/prescription")
+      .then(({ data }) => {
+        setPrescriptionNumbers(data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [isPrescriptionCodeOpen]);
 
   const [selectedValue, setSelectedValue] = useState(null);
+  const [selectedPatient, setSelectedPatient] = useState(null);
 
   const handleChange = (event, value) => {
     setSelectedValue(value);
@@ -187,9 +211,44 @@ export default function Docone() {
     axiosClient
       .get(`/prescription/get-prescription-by-code/${prescriptionId}`)
       .then(({ data }) => {
-        console.log(data);
+        setFullName(data.data.user_name);
+        setAge(data.data.age);
+        setPrescriptionCode(data.data.code);
+        setDate(data.data.date);
+
+        const array = [];
+        data.data.medicines.forEach((medicine) => {
+          const newMedicine = {
+            name: medicine.product.brand.brand_name,
+            genericName: medicine.product.drug.drug_name,
+            dosage: medicine.product.dosage,
+            quantity: medicine.product.qty,
+            useInstructions: medicine.product.user_instruction,
+            specialInstructions: medicine.product.special_instruction,
+            medicineId: medicine.product._id,
+          };
+          array.push(newMedicine);
+        });
+
+        setMedicineList(array);
+
+        setIsPrescriptionCodeOpen(true);
       });
   };
+
+  useEffect(() => {
+    if (!isPrescriptionCodeOpen) {
+      setIsNewPrescriptionClicked(false); // Reset form visibility
+      setFullName("");
+      setAge("");
+      setDate("");
+      setMedicineList([]);
+      setSelectedPatient(null);
+      setPrescriptionCode("");
+      setIsCardCreated(false);
+      setFormError(false); // Reset form error state
+    }
+  }, [isPrescriptionCodeOpen]);
 
   return (
     <div className="main">
@@ -210,7 +269,7 @@ export default function Docone() {
           }}
           onClick={handleNewPrescriptionClick}
         >
-          <AddCircleIcon style={{ marginRight: "5px", marginBottom: "-5px" }} />{" "}
+          <AddCircleIcon style={{ marginRight: "5px", marginBottom: "-5px" }} />
           New Prescription
         </button>
         <List>
@@ -236,8 +295,30 @@ export default function Docone() {
             </h2>
             {formError && (
               <p className="error-message">Please fill in all fields</p>
-            )}{" "}
+            )}
             {/* Display error message if form has errors */}
+            <div className="form-field" style={{ marginBottom: "20px" }}>
+              <Autocomplete
+                disablePortal
+                id="combo-box-demo"
+                options={patientOptions}
+                sx={{ width: "full" }}
+                style={{ marginBottom: "10px" }}
+                value={selectedPatient}
+                onChange={(event, value) => {
+                  if (value) {
+                    setFullName(`${value.id.first_name} ${value.id.last_name}`);
+                    setSelectedPatient(value);
+                  } else {
+                    setSelectedPatient(null);
+                    setFullName("");
+                  }
+                }}
+                renderInput={(params) => (
+                  <TextField {...params} label="Patient" />
+                )}
+              />
+            </div>
             <div className="form-field" style={{ marginBottom: "20px" }}>
               <TextField
                 id="fullName"
@@ -306,7 +387,7 @@ export default function Docone() {
                   style={{ padding: "10px", borderRadius: "10px" }}
                 >
                   <span>
-                    {medicine.genericName}, {medicine.dosage}, Qty{" "}
+                    {medicine.genericName}, {medicine.dosage}, Qty
                     {medicine.quantity}
                   </span>
                 </div>
@@ -400,7 +481,7 @@ export default function Docone() {
           />
           {formError && (
             <p className="error-message">Please fill in all required fields</p>
-          )}{" "}
+          )}
           {/* Display error message if any required field is empty */}
         </DialogContent>
         <DialogActions>
@@ -417,22 +498,31 @@ export default function Docone() {
             textAlign: "center",
             paddingLeft: "100px",
             paddingRight: "100px",
+            fontSize: "50px",
           }}
         >
           Prescription
         </DialogTitle>
         <DialogContent>
           <div style={{ marginBottom: "20px" }}>
-            <p>Patient Name : {fullName}</p>
-            <p>Patient Age : {age}</p>
-            <p>Date : {date}</p>
-            <p>Prescription Code : {prescriptionCode}</p>
+            <p style={{ fontSize: "20px", marginBottom: "5px" }}>
+              Patient Name : {fullName}
+            </p>
+            <p style={{ fontSize: "20px", marginBottom: "5px" }}>
+              Patient Age : {age}
+            </p>
+            <p style={{ fontSize: "20px", marginBottom: "5px" }}>
+              Date : {date}
+            </p>
+            <p style={{ fontSize: "20px", marginBottom: "5px" }}>
+              Prescription Code : {prescriptionCode}
+            </p>
           </div>
           <div>
             {medicineList.map((m) => {
               return (
-                <p>
-                  {m.name} {m.genericName} {m.dosage}
+                <p style={{ fontSize: "20px", marginBottom: "5px" }}>
+                  {m.name} {m.genericName} {m.dosage} - {m.quantity}
                 </p>
               );
             })}
