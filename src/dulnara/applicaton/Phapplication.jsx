@@ -3,7 +3,15 @@ import pharmacy from "../applicaton/pharmacy.jpeg";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "../applicaton/Phapplication.css";
-import { Autocomplete, TextField } from "@mui/material";
+import {
+  Autocomplete,
+  IconButton,
+  InputAdornment,
+  TextField,
+} from "@mui/material";
+import axiosClient from "../../axios-client";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import Swal from "sweetalert2";
 const Phapplication = () => {
   const [Firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
@@ -12,6 +20,8 @@ const Phapplication = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [district, setDistrict] = useState(null);
+  const [longitude, setLongitude] = useState("");
+  const [latitude, setLatitude] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = () => {
@@ -23,10 +33,14 @@ const Phapplication = () => {
       !pharmacyID ||
       !email ||
       !pharmacyID ||
-      !district
+      !district ||
+      !longitude ||
+      !latitude
     ) {
-      alert("Please fill in all fields before submitting.");
-      return;
+      Swal.fire({
+        text: "Please fill in all fields before submitting.",
+        icon: "error",
+      });
     }
     const payload = {
       first_name: Firstname,
@@ -36,6 +50,8 @@ const Phapplication = () => {
       email: email,
       password: password,
       district: district,
+      longitude: parseFloat(longitude),
+      latitude: parseFloat(latitude),
       type: "pharmacist",
     };
 
@@ -79,6 +95,12 @@ const Phapplication = () => {
 
   const handleChange = (event, value) => {
     setDistrict(value);
+  };
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -156,19 +178,49 @@ const Phapplication = () => {
             variant="outlined"
             fullWidth={true}
             style={{ marginBottom: "30px" }}
+            type={showPassword ? `text` : `password`}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={toggleShowPassword}
+                    edge="end"
+                  >
+                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
           />
           <Autocomplete
             disablePortal
             id="combo-box-demo"
             options={districts}
             fullWidth={true}
-            style={{ marginBottom: "10px" }}
+            style={{ marginBottom: "30px" }}
             value={district}
             onChange={handleChange}
             renderInput={(params) => <TextField {...params} label="District" />}
           />
+          <div style={{ display: "flex", gap: "30px" }}>
+            <TextField
+              label="Longitude"
+              variant="outlined"
+              style={{ marginBottom: "30px" }}
+              value={longitude}
+              onChange={(e) => setLongitude(e.target.value)}
+            />
+            <TextField
+              label="Latitude"
+              variant="outlined"
+              style={{ marginBottom: "30px" }}
+              value={latitude}
+              onChange={(e) => setLatitude(e.target.value)}
+            />
+          </div>
           <div style={{ display: "flex", gap: "30px" }}>
             <button style={{ margin: "0" }} type="button" onClick={handleLogin}>
               Submit
