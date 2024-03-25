@@ -1,17 +1,13 @@
-
-
 .container {
-  margin-top: 80px;
+  margin-top: 70px;
   display: grid;
   flex-direction: row;
-  grid-template-columns: 2fr 1fr 5fr;
-  height: 100vh;
-  
+  grid-template-columns: 1fr 5fr;
+  height: calc(100vh - 70px);
 }
 .bills {
   /* padding-top: 20px; */
   background-color: rgba(217, 217, 217, 0.838);
-  
 }
 
 .medicine {
