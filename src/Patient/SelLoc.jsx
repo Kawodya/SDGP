@@ -1,5 +1,5 @@
 // Import necessary components and icons
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, List, Typography } from "@mui/material";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import TextField from "@mui/material/TextField";
@@ -11,21 +11,57 @@ import MapIcon from "@mui/icons-material/Map";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 import "./SelLoc.css";
+import axiosClient from "../axios-client";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 export default function SelLoc() {
   const [showLocationDiv, setShowLocationDiv] = React.useState(false);
   const [viewOnMapClicked, setViewOnMapClicked] = React.useState(false);
-  const [selectedDistrict, setSelectedDistrict] = React.useState(""); // State to hold selected district
+  const [selectedDistrict, setSelectedDistrict] = React.useState(null); // State to hold selected district
+  const [pharmacyList, setPharmacyList] = useState([]);
+  const navigate = useNavigate();
 
-  const pharmacyLocation =
-    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.073394073073!2d79.8608103147725!3d6.927079994993073!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae259f3f3f3f3f3%3A0x3e3e3e3e3e3e3e3e!2sColombo%20National%20Hospital!5e0!3m2!1sen!2slk!4v1633943940733!5m2!1sen!2slk";
+  const [pharmacyLocation, setPharmacyLocation] = useState("");
 
   const handleSelectLocationClick = () => {
-    setShowLocationDiv(!showLocationDiv);
+    getCurrentPosition()
+      .then(({ longitude, latitude }) => {
+        const prescriptionId = localStorage.getItem("prescriptionId");
+        if (selectedDistrict) {
+          axiosClient
+            .get(
+              `/prescription/get-pharmacists-by-prescription/${selectedDistrict}/${prescriptionId}/${longitude}/${latitude}`
+            )
+            .then(({ data }) => {
+              localStorage.removeItem("prescriptionId");
+              setPharmacyList(data.data);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+          setShowLocationDiv(!showLocationDiv);
+        } else {
+          Swal.fire({
+            text: "Please select a district !",
+            icon: "error",
+          });
+        }
+      })
+      .catch((error) => {
+        Swal.fire({
+          text: "Please give access for location",
+          icon: "error",
+        });
+      });
   };
 
-  const handleViewOnMapClick = () => {
-    setViewOnMapClicked(true);
+  const handleViewOnMapClick = (lat, long) => {
+    localStorage.setItem(
+      "googleAddress",
+      `http://maps.google.com/maps?q=${lat},${long}`
+    );
+    navigate("/map");
   };
 
   const handleCardButtonClick = (name) => {
@@ -100,12 +136,6 @@ export default function SelLoc() {
     }
   };
 
-  const prescriptionNumbers = [
-    "PRENo:-202401315",
-    "PRENo:-202401316",
-    "PRENo:-202401317",
-  ];
-
   const districts = [
     "Ampara",
     "Anuradhapura",
@@ -134,6 +164,40 @@ export default function SelLoc() {
     "Vavuniya",
   ];
 
+  const [prescriptionNumbers, setPrescriptionNumbers] = useState([]);
+
+  useEffect(() => {
+    const patient = JSON.parse(localStorage.getItem("user"));
+    const patientId = patient.user_id;
+
+    axiosClient
+      .get("/prescription")
+      .then(({ data }) => {
+        setPrescriptionNumbers(
+          data.data.filter((prescription) => prescription._id !== patientId)
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  const getCurrentPosition = () => {
+    return new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const longitude = position.coords.longitude;
+          const latitude = position.coords.latitude;
+          resolve({ longitude, latitude });
+        },
+        (error) => {
+          reject(error);
+        },
+        { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+      );
+    });
+  };
+
   return (
     <div>
       <Navbar currentPage={"Patient"} />
@@ -148,7 +212,7 @@ export default function SelLoc() {
               cursor: "pointer",
               border: "none",
               fontSize: "16px",
-              width: "200px",
+              width: "100%",
               margin: "0",
             }}
           >
@@ -161,10 +225,11 @@ export default function SelLoc() {
             {prescriptionNumbers.map((prescription, index) => (
               <>
                 <Button
-                  style={{ color: "black" }}
-                  onClick={() => selectPrescription(prescription._id)}
+                  className="prescription-buttons"
+                  style={{ color: "black", width: "100%" }}
+                  onClick={() => selectPrescription(prescription.code)}
                 >
-                  <InsertDriveFileIcon /> {prescription._id}
+                  <InsertDriveFileIcon /> {prescription.code}
                 </Button>
                 <br />
               </>
@@ -173,7 +238,7 @@ export default function SelLoc() {
         </div>
 
         <div className="info">
-          {viewOnMapClicked ? (
+          {/* {viewOnMapClicked ? (
             <div>
               <iframe
                 title="Pharmacy Location"
@@ -183,109 +248,129 @@ export default function SelLoc() {
                 loading="lazy"
               ></iframe>
             </div>
-          ) : (
-            <>
-              <div style={{ height: "100%" }}>
-                {showLocationDiv ? (
-                  <div className="locationDiv">
-                    {visibleCards.map((card, index) => (
-                      <div key={index} className="locationCard">
-                        <div className="cardInfo">
-                          <div className="name">{card.name}</div>
+          ) : ( */}
+          <>
+            <div style={{ height: "100%" }}>
+              {showLocationDiv ? (
+                <div style={{ marginLeft: "100px", marginTop: "20px" }}>
+                  {pharmacyList.length !== 0 ? (
+                    pharmacyList.map((pharmacy, index) => (
+                      <div
+                        key={index}
+                        style={{
+                          display: "flex",
+                          gap: "100px",
+                          marginBottom: "20px",
+                          background: "lightgray",
+                          width: "60%",
+                          padding: "20px",
+                          borderRadius: "20px",
+                        }}
+                      >
+                        <div
+                          style={{
+                            display: "flex",
+                            flex: "1",
+                            justifyContent: "space-between",
+                            alignItems: "center",
+                          }}
+                        >
+                          <div style={{ fontSize: "18px", fontWeight: "bold" }}>
+                            {pharmacy.pharmacy?.name}
+                          </div>
                           <div
-                            className="price"
-                            style={{ marginLeft: "450px" }}
-                          >{`Price: ${card.price}`}</div>
+                            style={{ fontSize: "18px", fontWeight: "bold" }}
+                          >{`Distance: ${pharmacy.distance}`}</div>
+                          <div
+                            style={{ fontSize: "18px", fontWeight: "bold" }}
+                          >{`Price: ${pharmacy.totalPrice}`}</div>
                         </div>
-                        <button
-                          className="cardButton"
-                          style={{
-                            backgroundColor: "darkblue", // Apply blue color to the button
-                            color: "white", // Set text color to white
-                            padding: "12px", // Adjust padding as needed
-                            borderRadius: "5px", // Add border-radius for rounded corners
-                            border: "none", // Remove button border
-                            fontSize: "14px", // Adjust font size
-                          }}
-                          onClick={() => {
-                            handleCardButtonClick(card.name);
-                            handleViewOnMapClick();
-                          }}
-                        >
-                          <MapIcon
-                            style={{ marginRight: "6px", marginBottom: "-6px" }}
-                          />
-                          View on Map
-                        </button>
+                        <div style={{}}>
+                          <a
+                            className=""
+                            style={{
+                              margin: "0",
+                              backgroundColor: "darkblue", // Apply blue color to the button
+                              color: "white", // Set text color to white
+                              padding: "12px", // Adjust padding as needed
+                              borderRadius: "5px", // Add border-radius for rounded corners
+                              border: "none", // Remove button border
+                              fontSize: "14px", // Adjust font size
+                              textDecoration: "none",
+                            }}
+                            href={`http://maps.google.com/maps?q=${pharmacy.roles[0].latitude},${pharmacy.roles[0].longitude}`}
+                            target="_blank"
+                          >
+                            <MapIcon
+                              style={{
+                                marginRight: "6px",
+                                marginBottom: "-6px",
+                              }}
+                            />
+                            View on Map
+                          </a>
+                        </div>
                       </div>
-                    ))}
-                  </div>
-                ) : (
-                  <>
-                    {/* Add selection box for districts */}
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        height: "100%",
-                        gap: "20px",
-                      }}
-                    >
-                      <div>
-                        <Autocomplete
-                          disablePortal
-                          id="combo-box-demo"
-                          options={districts}
-                          sx={{ width: "300px" }}
-                          style={{ marginBottom: "10px" }}
-                          // value={selectedValue}
-                          // onChange={handleChange}
-                          renderInput={(params) => (
-                            <TextField {...params} label="District" />
-                          )}
-                        />
-                        {/* <select
-                          value={selectedDistrict}
-                          onChange={(e) => setSelectedDistrict(e.target.value)}
-                          style={{
-                            padding: "10px",
-                            borderRadius: "5px",
-                            border: "1px solid #ccc",
-                            fontSize: "16px",
-                          }}
-                        >
-                          <option value="">Select District</option>
-                          <option value="Colombo">Colombo</option>
-                          <option value="Gampaha">Gampaha</option>
-                        </select> */}
-                      </div>
-                      {/* Change button to Next button */}
+                    ))
+                  ) : (
+                    <span style={{ fontSize: "50px" }}>
+                      Pharmacy Cannot Found
+                    </span>
+                  )}
+                </div>
+              ) : (
+                <>
+                  {/* Add selection box for districts */}
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      height: "100%",
+                      gap: "20px",
+                    }}
+                  >
+                    <div style={{ display: "flex", gap: "20px" }}>
+                      <Autocomplete
+                        disablePortal
+                        id="combo-box-demo"
+                        options={districts}
+                        sx={{ width: "300px" }}
+                        value={selectedDistrict}
+                        onChange={(event, value) => {
+                          if (value) {
+                            setSelectedDistrict(value);
+                          } else {
+                            setSelectedDistrict(null);
+                          }
+                        }}
+                        renderInput={(params) => (
+                          <TextField {...params} label="District" />
+                        )}
+                      />
                       <button
                         style={{
                           margin: "0",
                           width: "100px",
                           background: "darkblue", // Apply blue color to the button
                           color: "white", // Set text color to white
-                          padding: "15px", // Adjust padding as needed
+                          padding: "0px", // Adjust padding as needed
                           borderRadius: "5px", // Add border-radius for rounded corners
                           border: "none", // Remove button border
                           fontSize: "16px",
                         }}
-                        className="nextButton"
+                        // className="nextButton"
                         onClick={handleSelectLocationClick}
                       >
-                        Next
-                        {/* <ArrowForwardIcon
-                          style={{ marginLeft: "5px", marginBottom: "-7" }}
-                        /> */}
+                        Search
                       </button>
                     </div>
-                  </>
-                )}
-              </div>
-            </>
-          )}
+                  </div>
+                </>
+              )}
+            </div>
+          </>
+          {/* )} */}
         </div>
       </div>
     </div>
