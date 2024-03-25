@@ -34,7 +34,7 @@ export default function SelLoc() {
               `/prescription/get-pharmacists-by-prescription/${selectedDistrict}/${prescriptionId}/${longitude}/${latitude}`
             )
             .then(({ data }) => {
-              localStorage.removeItem("prescriptionId");
+          
               setPharmacyList(data.data);
             })
             .catch((err) => {
@@ -262,7 +262,7 @@ export default function SelLoc() {
                           gap: "100px",
                           marginBottom: "20px",
                           background: "lightgray",
-                          width: "60%",
+                          width: "80%",
                           padding: "20px",
                           borderRadius: "20px",
                         }}
@@ -276,14 +276,14 @@ export default function SelLoc() {
                           }}
                         >
                           <div style={{ fontSize: "18px", fontWeight: "bold" }}>
-                            {pharmacy.pharmacy?.name}
+                            {pharmacy?.pharmacy?.name}
                           </div>
                           <div
                             style={{ fontSize: "18px", fontWeight: "bold" }}
-                          >{`Distance: ${pharmacy.distance}`}</div>
+                          >{`Distance: ${pharmacy?.distance} km`}</div>
                           <div
                             style={{ fontSize: "18px", fontWeight: "bold" }}
-                          >{`Price: ${pharmacy.totalPrice}`}</div>
+                          >{`Price: ${pharmacy?.totalPrice}`}</div>
                         </div>
                         <div style={{}}>
                           <a
@@ -298,7 +298,7 @@ export default function SelLoc() {
                               fontSize: "14px", // Adjust font size
                               textDecoration: "none",
                             }}
-                            href={`http://maps.google.com/maps?q=${pharmacy.roles[0].latitude},${pharmacy.roles[0].longitude}`}
+                            href={`http://maps.google.com/maps?q=${pharmacy?.latitude},${pharmacy?.longitude}`}
                             target="_blank"
                           >
                             <MapIcon
